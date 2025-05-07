@@ -10,12 +10,8 @@
 
 <body>
     <center>
-        <h1>用户信息管理</h1>
-        <div class="nav-links">
-            <a href="{% url 'indexusers'%}">浏览信息</a> |
-            <a href="{% url 'addusers'%}">添加用户</a>
-        </div>
-        <hr>
+        <!-- 导入公共模块 -->
+        {% include 'myapp/users/header.html' %}
 
         <h2>提示操作信息</h2>
         <p>{% if info %} {{ info }} {% endif %}</p>
