@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render
 from django.http import Http404, HttpResponse
 from django.urls import reverse
@@ -69,14 +70,15 @@ def addUsers(request):
 def insertUsers(request):
     try:
         ob = Users()
+        #从表单中获取数据并赋值给ob对象的属性
         ob.name = request.POST['name']
         ob.age = request.POST['age']
         ob.phone = request.POST['phone']
         ob.save()#保存到数据库中，id会自动生成
         context = {'info':f"{ob.name}-用户信息添加成功！"} #将提示信息传递给模板
-        return render(request,"myapp/users/info.html",context) #加载模板 
     except:
-        return HttpResponse("添加用户信息失败！")
+        context = {'info':"用户信息添加失败！"} #将提示信息传递给模板
+    return render(request,"myapp/users/info.html",context) #加载模板 
 #执行用户信息删除
 def delUsers(request,uid=0):
     try:
@@ -88,7 +90,25 @@ def delUsers(request,uid=0):
     return render(request,"myapp/users/info.html",context) #加载模板
 #加载修改用户信息表单
 def editUsers(request,uid=0):
-    pass
+    try:
+        ob = Users.objects.get(id = uid) #获取要修改的用户信息
+        context = {"user":ob} #将用户信息传递给模板
+        return render(request,"myapp/users/edit.html",context) #加载模板
+    except:
+        context = {'info':"没有找到要修改的信息！"} #将提示信息传递给模板
+        return render(request,"myapp/users/info.html",context) #加载模板
 #执行用户信息修改
 def updateUsers(request):
-    pass
+    try:
+        uid = int(request.POST['id']) #获取要修改的用户id
+        ob = Users.objects.get(id = uid)
+        #从表单中获取数据并赋值给ob对象的属性
+        ob.name = request.POST['name']
+        ob.age = request.POST['age']
+        ob.phone = request.POST['phone']
+        ob.addtime = datetime.now() #更新添加时间
+        ob.save()#保存到数据库中，id会自动生成
+        context = {'info':f"{ob.name}-用户信息修改成功！"} #将提示信息传递给模板
+    except:
+        context = {'info':"用户信息修改失败！"} #将提示信息传递给模板
+    return render(request,"myapp/users/info.html",context) #加载模板 

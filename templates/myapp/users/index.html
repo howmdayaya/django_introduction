@@ -60,7 +60,7 @@
                 <td>{{ user.phone }}</td>
                 <td>{{ user.addtime }}</td>
                 <td>
-                    <a href="#" class="edit-link">编辑</a> 
+                    <a href="{% url 'editusers' user.id %}" class="edit-link">编辑</a> 
                     <a href="{% url 'delusers' user.id %}" class="delete-link">删除</a>
                 </td>
             </tr>
