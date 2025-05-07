@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from . import views
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
+    path('',views.home,name='home'),
     #在当前总路由中添加子路由
-    path('',include('myapp.urls')),
+    path('user/',include('myapp.urls')),
     path('playground/', include('playground.urls'))
 ]
