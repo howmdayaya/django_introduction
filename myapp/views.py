@@ -5,6 +5,9 @@ from django.urls import reverse
 from myapp.models import Users
 # Create your views here.
 def home(request):
+    #注释练习代码块
+    #{
+     
     # raise Http404("Error in home view")
     # print(reverse('home'))#通过name反向解析出url路径
 
@@ -41,8 +44,14 @@ def home(request):
     # ulist = mod.order_by("-age") #获取age降序的数据，返回一个QuerySet对象，可迭代
 
     # for u in ulist: #遍历所有数据
-    #     print(u.id, u.name, u.age, u.phone, u.addtime)
-    return HttpResponse("<h1>Hello, world. You're at the Home Page.</h1>")
+    #     print(u.id, u.name, u.age, u.phone, u.addtime)}
+
+
+    return HttpResponse(
+        "<h1>Hello, world. You're at the Home Page.</h1>"
+        "<h3>Welcome to my-django-demo!</h3>"
+        "<a href='/user'>用户管理系统</a>"
+    )
 
 
 #浏览用户信息
@@ -55,13 +64,28 @@ def indexUsers(request):
         return HttpResponse("没有找到用户信息！")
 #加载添加用户信息表单
 def addUsers(request):
-    pass
+    return render(request,'myapp/users/add.html')
 #执行用户信息添加
 def insertUsers(request):
-    pass
+    try:
+        ob = Users()
+        ob.name = request.POST['name']
+        ob.age = request.POST['age']
+        ob.phone = request.POST['phone']
+        ob.save()#保存到数据库中，id会自动生成
+        context = {'info':f"{ob.name}-用户信息添加成功！"} #将提示信息传递给模板
+        return render(request,"myapp/users/info.html",context) #加载模板 
+    except:
+        return HttpResponse("添加用户信息失败！")
 #执行用户信息删除
 def delUsers(request,uid=0):
-    pass
+    try:
+        ob = Users.objects.get(id = uid) #获取要删除的用户信息
+        ob.delete()#删除用户信息
+        context = {'info':f"{ob.name}-用户信息删除成功！"} #将提示信息传递给模板
+    except:
+        context = {'info':"用户信息删除失败！"} #将提示信息传递给模板
+    return render(request,"myapp/users/info.html",context) #加载模板
 #加载修改用户信息表单
 def editUsers(request,uid=0):
     pass

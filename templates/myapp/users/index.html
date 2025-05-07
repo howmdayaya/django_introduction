@@ -4,11 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table {
+            width: 800px;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        thead tr {
+            background-color: #4CAF50;
+            color: white;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        tbody tr {
+            border-bottom: 1px solid #ddd;
+        }
+        .edit-link {
+            color: #2196F3;
+            text-decoration: none;
+        }
+        .delete-link {
+            color: #f44336;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
     <center>
-        <h2>用户信息管理</h2>
-        <table width="800" border="1">
+        <h1>用户信息管理</h1>
+        <a href="{% url 'indexusers'%}">浏览信息</a> |
+        <a href="{% url 'addusers'%}">添加用户</a>
+        <hr>
+
+        <h2>浏览用户信息</h2>
+        <table>
+            <thead>
             <tr>
                 <th>ID</th>
                 <th>姓名</th>
@@ -17,6 +50,8 @@
                 <th>添加时间</th>
                 <th>操作</th>
             </tr>
+            </thead>
+            <tbody>
             {% for user in userslist %}
             <tr>
                 <td>{{ user.id }}</td>
@@ -25,12 +60,13 @@
                 <td>{{ user.phone }}</td>
                 <td>{{ user.addtime }}</td>
                 <td>
-                    编辑 删除
+                    <a href="#" class="edit-link">编辑</a> 
+                    <a href="{% url 'delusers' user.id %}" class="delete-link">删除</a>
                 </td>
             </tr>
             {% endfor %}
-                
+            </tbody>
+        </table>
     </center>
-
 </body>
 </html>
