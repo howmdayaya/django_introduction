@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h2>用户信息管理</h2>
+        <table width="800" border="1">
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>电话</th>
+                <th>添加时间</th>
+                <th>操作</th>
+            </tr>
+            {% for user in userslist %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.age }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.addtime }}</td>
+                <td>
+                    编辑 删除
+                </td>
+            </tr>
+            {% endfor %}
+                
+    </center>
+
+</body>
+</html>
