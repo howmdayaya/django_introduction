@@ -19,7 +19,9 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    #username:admin,password:123456
+    path('admin/', admin.site.urls),
+
     path('',views.home,name='home'),
     #在当前总路由中添加子路由
     path('user/',include('myapp.urls')),

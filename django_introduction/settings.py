@@ -36,12 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
     # myapp
-    'playground',
-    'myapp'
+    'myapp.apps.MyappConfig',
+    'playground.apps.PlaygroundConfig',
 ]
 
 MIDDLEWARE = [
@@ -111,9 +112,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+# 设置语言环境为简体中文
+LANGUAGE_CODE = 'zh-hans'
+# 设置时区为上海
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
