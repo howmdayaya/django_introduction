@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    #返回首页
     # path('',views.home,name='home'),
 
     #配置users信息操作路由

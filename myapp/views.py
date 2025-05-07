@@ -4,7 +4,8 @@ from django.http import Http404, HttpResponse
 from django.urls import reverse
 from myapp.models import Users
 # Create your views here.
-# def home(request):
+
+{# def home(request):
 #     #注释练习代码块
 #     #{
      
@@ -52,6 +53,8 @@ from myapp.models import Users
 #         "<h3>Welcome to my-django-demo!</h3>"
 #         "<a href='/user'>用户管理系统</a>"
 #     )
+}
+
 
 
 #浏览用户信息
