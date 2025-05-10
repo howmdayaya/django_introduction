@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Django的模板实例</h1>
+    <a href="{% url 'mytpdemo:index'%}">应用首页</a>
+    <hr>
+    <h3>1.模板中的变量输出</h3>
+    <ul>
+        <li>{{ name }}</li>
+        <li>{{ a.0 }}-{{ a.1 }}-{{ a.2 }}</li>
+        <li>{{d.name}}-{{d.age}}-{{d.gender}}</li>
+    </ul>
+    <hr>
+    <h3>2.模板中的标签</h3>
+    <table width="500px" border="1">
+        <tr>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>性别</td>
+            <td>爱好</td>
+            <td>状态</td>
+        </tr>
+        <!-- 循环 -->
+        {% for d in data %}
+        <tr>
+            <td>{{d.name}}</td>
+            <td>{{d.age}}</td>
+            <!-- 判断 -->
+            <td>
+                {% if d.gender == 1 %}男{% else %}女{% endif %}
+            </td>
+            <td>{{d.hobby}}</td>
+            <td>
+                {% if d.state == 0 %}
+                    <span style="color: rgb(255, 10, 10);">管理员</span>
+                {% elif d.state == 1 %}
+                    <span style="color:rgb(241, 217, 36)">VIP用户</span>
+                {% else %}
+                    <span style="color: rgb(169, 169, 169);">游客</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    令牌：{% csrf_token %}
+    <hr>
+    <h3>3.模板中的过滤器</h3>
+    <ul>
+        <li>原值：{{name}}</li>
+        <li>大写：{{ name|upper }}</li>
+        <li>小写：{{ name|lower }}</li>
+        <li>首字母大写：{{ name|capfirst }}</li>
+        <li>字符长度：{{ name|length }}</li>
+        <li>换行：{{ name|linebreaks }}</li>
+        <li>
+            原值：{{ hobby }}<br>
+            用”，“拼接：{{ hobby|join:"," }}
+        </li>
+        <li>{{ time }}</li>
+        <li>{{ time|date:'Y-m-d H:i:s w'}}</li>
+    </ul>
+    <hr>
+    {# 单行注释 #}
+    <h3>comment多行注释在源代码中也无法查看</h3>
+    {% comment %}
+        注释
+    {% endcomment %}
+    <hr>
+    <h3>4.模板中的运算</h3>
+    <p>原版太麻烦，不如在views中运算后传结果展示，或者自定义筛选器，或者使用第三方库 django-mathfilters</p>
+    <p>导入第三方库 { % load mathfilters % }</p>
+    {% load mathfilters %}
+    <ul>
+        <li>数据：{{m1}}, {{m2}}</li>
+        <li>加法：{{m1|add:m2}}</li>
+        <li>减法：{{m1|sub:m2}}</li>
+        <li>乘法：{{m1|mul:m2}}</li>
+        <li>除法：{{m1|div:m2}}</li>  
+    </ul>
+    <hr>
+</body>
+</html>

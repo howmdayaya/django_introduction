@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>myweb page</h1>
+    <hr>
+    <ul>
+        <li><a href="{% url 'myweb:res01'%}">1. 一个简单视图</a></li>
+        <li><a href="{% url 'myweb:res02'%}">2. 返回错误视图</a></li>
+        <li><a href="{% url 'myweb:res03'%}">3. 重定向</a></li>
+        <li><a href="{% url 'myweb:res04'%}">4. 基于类的基本视图</a></li>
+        <li><a href="{% url 'myweb:res05'%}">5. 响应json数据格式</a></li>
+        <li><a href="{% url 'myweb:res06'%}">6. Cookie的使用</a></li>
+        <li><a href="{% url 'myweb:res07'%}">7. 测试request请求对象</a></li>
+    </ul>
+</body>
+</html>

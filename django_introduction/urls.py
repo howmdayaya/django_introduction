@@ -25,5 +25,7 @@ urlpatterns = [
     path('',views.home,name='home'),
     #在当前总路由中添加子路由
     path('user/',include('myapp.urls')),
-    path('playground/', include('playground.urls'))
+    path('playground/', include('playground.urls')),
+    path('myweb/', include('myweb.urls')),
+    path('mytpdemo/', include('mytpdemo.urls')),
 ]

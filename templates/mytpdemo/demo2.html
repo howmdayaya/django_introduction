@@ -1,0 +1,8 @@
+{% extends "mytpdemo/父模板.html"%}
+
+{% block title2 %}Django的模板继承实例{% endblock %}
+
+{% block mycontent %}
+1.基础模板（Base Template）：定义网站的通用结构（如导航栏、页脚、侧边栏等），并使用{ % block % }标签标记出可以被子模板替换的区域。<br>
+2.子模板（Child Template）：使用{ % extends % }标签继承基础模板，并通过{ % block % }标签填充或覆盖特定内容区域。
+{% endblock %}

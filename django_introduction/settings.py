@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# 获取当前项目的根目录
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -29,6 +30,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# 设置统一编码
+DEFAULT_CHARSET = 'utf-8'
+
 
 # Application definition
 
@@ -43,6 +47,11 @@ INSTALLED_APPS = [
     # myapp
     'myapp.apps.MyappConfig',
     'playground.apps.PlaygroundConfig',
+    'myweb.apps.MywebConfig',
+    'mytpdemo.apps.MytpdemoConfig',
+
+    # 第三方应用程序
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
